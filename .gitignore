@@ -1,5 +1,9 @@
-private/
+private/conf/*.opp
 venv/
-*.pyc
-__pycache__
+__pycache__/
+*.py[cod]
+*$py.class
+
+data/dynamic/*.sqlite3
+
 

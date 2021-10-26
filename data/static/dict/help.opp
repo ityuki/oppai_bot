@@ -1,8 +1,11 @@
 count       おっぱい数を報告します
 word        おっぱい宣教師のありがたい語録を表示します
 flag        おっぱいフラグをたてます
+per         おっぱい濃度を表示します
 hello       色んな言語でhello worldを表示します
-per         チャンネル内のおっぱい濃度を表示します
+ping        生きていたら何か反応を返します
+tawawa      月曜日のたわわ
 random      どれかのコマンドを実行します
-version     oppai_infoのversionを表示します
+control     oppai_botに指示を出します(oppai control helpを参照)
+version     oppai_botのversionを表示します
 help        このヘルプを表示します

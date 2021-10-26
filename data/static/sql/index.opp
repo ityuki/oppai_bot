@@ -1,0 +1,8 @@
+word        0       generic_0000_00_create_meta.sql
+word        1       word_0001_00_create_word.sql
+word        1       word_0001_01_create_word_idx1.sql
+flag        0       generic_0000_00_create_meta.sql
+flag        1       flag_0001_00_create_flag.sql
+flag        1       flag_0001_01_create_flag_idx1.sql
+log         0       generic_0000_00_create_meta.sql
+log         1       log_0001_00_create_log.sql
