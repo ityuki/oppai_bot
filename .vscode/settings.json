@@ -1,0 +1,12 @@
+{
+    "terminal.integrated.profiles.windows": {
+        "venvcmd": {
+          "path": "cmd.exe",
+          "args": [
+             "/k",
+             ".\\venv\\Scripts\\activate"
+          ]
+        }
+    },
+    "terminal.integrated.defaultProfile.windows": "venvcmd",
+}
