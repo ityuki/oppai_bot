@@ -4,6 +4,8 @@ import re
 
 from oppai.sqlite3 import SQLite3
 
+import oppai.slack_ctrl as slack_ctrl
+
 class Data:
     def file_read(self,fname):
         try:
@@ -11,7 +13,11 @@ class Data:
                 return f.read().split("\n")
         except OSError:
             return []
-    
+
+    def file_write(self,fname,data):
+        with open(fname,mode="w",encoding="utf-8") as f:
+            f.write(data)
+
     def file_list(self,dir):
         try:
             d = []
@@ -36,6 +42,9 @@ class Data:
             d.append(l)
         return d
 
+    def list_writer(self,fname,data):
+        self.file_write(fname,"\n".join(data))
+
     def dict_loader(self,fname):
         d = {}
         d[''] = {}
@@ -51,6 +60,14 @@ class Data:
             d[sp[0]] = sp[1]
             d['']['index'].append(sp[0])
         return d
+    
+    def dict_writer(self,fname,data):
+        d = []
+        for key in data:
+            if key == "":
+                continue
+            d.append(key + " " + data[key])
+        self.file_write(fname,"\n".join(d))
     
     def index_loader(self,fname):
         d = {}
@@ -110,6 +127,11 @@ class Data:
             self.conf[fname] = self.dict_loader(target_dir + "/" + fname)
         
         self.db = SQLite3(self)
-        
+
+        slack_token = slack_ctrl.token_load(self.conf['slack'])
+        if not slack_token is None:
+            self.dict_writer(private_dir + "/conf/slack.opp",slack_token)
+            self.conf['slack'] = self.dict_loader(private_dir + "/conf/slack.opp")
+
 
 

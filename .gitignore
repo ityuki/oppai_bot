@@ -5,5 +5,7 @@ __pycache__/
 *$py.class
 
 data/dynamic/*.sqlite3
+data/dynamic/*.sqlite3-shm
+data/dynamic/*.sqlite3-wal
 
 
