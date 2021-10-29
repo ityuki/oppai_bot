@@ -49,6 +49,8 @@ class Cmd:
 
     # おっぱい数を返す
     def count(self,channel):
+        if not channel in self.data.dynamic_dict['sum']:
+            self.data.dynamic_dict['sum'] = "0"
         return "現在 " + self.data.dynamic_dict['sum'][channel] + "おっぱいです"
 
     # おっぱい宣教師語録+α
