@@ -34,7 +34,7 @@ class Bot:
                     cmds.pop()
                 cmd = cmds[1]
                 if cmd == "control":
-                    pass
+                    res = "まだしらないおっぱいです"
                 else:
                     if self.cmd.has_cmd(cmd):
                         res = self.cmd.run_cmd(channel,cmd)
