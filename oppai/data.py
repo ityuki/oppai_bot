@@ -55,6 +55,10 @@ class Data:
             sp = re.split(r'\s+',l,maxsplit=1)
             if len(sp) != 2:
                 continue
+            sp[0] = re.sub(r'^\s+','',sp[0])
+            sp[0] = re.sub(r'\s+$','',sp[0])
+            sp[1] = re.sub(r'^\s+','',sp[1])
+            sp[1] = re.sub(r'\s+$','',sp[1])
             if sp[0] == "" or sp[1] == "":
                 continue
             d[sp[0]] = sp[1]
