@@ -3,6 +3,6 @@ create table if not exists flag(
     userid text not null,
     msg text not null,
     is_deleted int not null,
-    crate_at int not null,
+    create_at int not null,
     PRIMARY KEY(id)
 );

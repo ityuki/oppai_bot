@@ -52,13 +52,20 @@ class Data:
         for l in self.file_read(fname + ".opp"):
             if l == "":
                 continue
-            sp = re.split(r'\s+',l,maxsplit=2)
+            sp = re.split(r'\s+',l,maxsplit=1)
             if len(sp) != 2:
                 continue
             if sp[0] == "" or sp[1] == "":
                 continue
             d[sp[0]] = sp[1]
             d['']['index'].append(sp[0])
+        return d
+    def dict_keys(self,data):
+        d = []
+        for k in data:
+            if k == "":
+                continue
+            d.append(k)
         return d
     
     def dict_writer(self,fname,data):
@@ -69,6 +76,9 @@ class Data:
             d.append(key + " " + data[key])
         self.file_write(fname,"\n".join(d))
     
+    def dynamic_dict_writer(self,name):
+        return self.dict_writer(self.data_dir + "/dynamic/dict/"+name+".opp",self.dynamic_dict[name])
+    
     def index_loader(self,fname):
         d = {}
         d[''] = {}
@@ -77,7 +87,7 @@ class Data:
         for l in self.file_read(fname + ".opp"):
             if l == "":
                 continue
-            sp = re.split(r'\s+',l,maxsplit=3)
+            sp = re.split(r'\s+',l,maxsplit=2)
             if len(sp) != 3:
                 continue
             if sp[0] == "" or sp[1] == "" or sp[2] == "":
@@ -112,6 +122,7 @@ class Data:
         self.list = {}
         self.sql = {}
         self.conf = {}
+        self.dynamic_dict = {}
         target_dir = data_dir + "/static/dict"
         for fname in self.file_list(target_dir):
             self.dict[fname] = self.dict_loader(target_dir + "/" + fname)
@@ -125,6 +136,9 @@ class Data:
         target_dir = private_dir + "/conf"
         for fname in self.file_list(target_dir):
             self.conf[fname] = self.dict_loader(target_dir + "/" + fname)
+        target_dir = data_dir + "/dynamic/dict"
+        for fname in self.file_list(target_dir):
+            self.dynamic_dict[fname] = self.dict_loader(target_dir + "/" + fname)
         
         self.db = SQLite3(self)
 

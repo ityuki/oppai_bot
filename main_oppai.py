@@ -22,7 +22,7 @@ if __name__ == '__main__':
         if 'text' in event:
             # input
             text = event['text']
-            res =  bot.incomming_message(user,text)
+            res =  bot.incomming_message(channel_id,user,text)
             if not res is None:
                 client.web_client.chat_postMessage(
                     channel=channel_id,

@@ -9,4 +9,14 @@
         }
     },
     "terminal.integrated.defaultProfile.windows": "venvcmd",
+    "terminal.integrated.profiles.linux": {
+        "venvbash": {
+          "path": "/bin/bash",
+          "args": [
+            "-s",
+            "./venv/bin/activate"
+          ]
+        }
+    },
+    "terminal.integrated.defaultProfile.linux": "venvbash",
 }

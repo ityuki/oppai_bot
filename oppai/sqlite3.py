@@ -68,8 +68,13 @@ class SQLite3:
             self.db[dbname].commit()
 
     def sql_execute(self,dbname,sql,sqlparam):
+        if not dbname in self.db:
+            return None
         cur = self.db[dbname].cursor()
-        cur.execute(sql,sqlparam)
+        if sqlparam is None:
+            cur.execute(sql)
+        else:
+            cur.execute(sql,sqlparam)
         rows = cur.fetchall()
         cur.close()
         return rows
