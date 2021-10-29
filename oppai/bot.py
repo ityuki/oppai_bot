@@ -22,7 +22,7 @@ class Bot:
         id = 0
         if not rows is None and not rows[0] is None and not rows[0][0] is None:
             id = int(rows[0][0]) + 1
-        self.data.db.sql_execute("log","insert into log(id,channnel,userid,msg,create_at) values(?,?,?,?,?)",(id,channel,user,message,int(time.time())))
+        self.data.db.sql_execute("log","insert into log(id,channel,userid,msg,create_at) values(?,?,?,?,?)",(id,channel,user,message,int(time.time())))
         self.data.db.sql_commit("log")
 
         # 出力メッセージ構築
