@@ -40,7 +40,6 @@ class Bot:
                         res = self.cmd.run_cmd(channel,cmd)
                     else:
                         rcmd = self.cmd.likely_cmd(cmd)
-                        print (rcmd)
                         if not rcmd is None and self.cmd.has_cmd(rcmd):
                             res = "もしかして `" + rcmd + "` っぱい？" + \
                             choice([
