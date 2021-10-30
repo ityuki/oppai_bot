@@ -39,7 +39,18 @@ class Bot:
                     if self.cmd.has_cmd(cmd):
                         res = self.cmd.run_cmd(channel,cmd)
                     else:
-                        res = "しらないおっぱいです"
+                        rcmd = self.cmd.likely_cmd(cmd)
+                        print (rcmd)
+                        if not rcmd is None and self.cmd.has_cmd(rcmd):
+                            res = "もしかして `" + rcmd + "` っぱい？" + \
+                            choice([
+                                lambda c: "",
+                                lambda c: "\n詳しくは `oppai help` を見直すか、実行してみるといいぱい",
+                                lambda c: "\n……じっこうするぱいとでもおもったか！",
+                                lambda c: "\nやれやれ。動かしてやるぱい\n" + (self.cmd.run_cmd(channel,c) or ""),
+                            ])(rcmd)
+                        else:
+                            res = "しらないおっぱいです"
 
         return res
 

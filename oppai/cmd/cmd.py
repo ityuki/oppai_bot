@@ -1,6 +1,9 @@
 import inspect
+from math import radians
 import re
 import random
+
+import Levenshtein
 
 class Cmd:
     def __init__(self,data):
@@ -20,6 +23,27 @@ class Cmd:
             return False
         return True
     
+    def likely_cmd(self,cmd):
+        rcmds = []
+        score = None
+        for dcmd in self.data.dict_keys(self.data.dict['help']):
+            lvd = Levenshtein.distance(cmd,dcmd)
+            if lvd > 3:
+                continue
+            dscore = lvd/(len(cmd)+len(dcmd))
+            if score is None:
+                score = dscore
+                rcmds = [dcmd]
+            else:
+                if dscore < score:
+                    score = dscore
+                    rcmds = [dcmd]
+                elif dscore == score:
+                    rcmds.append(dcmd)
+        if len(rcmds) < 1:
+            return None
+        return random.choice(rcmds)
+    
     def run_cmd(self,channel,cmd):
         f = self.get_method(cmd)
         if f is None:
@@ -38,7 +62,12 @@ class Cmd:
             self.data.dynamic_dict['count'] = {}
         if not channel in self.data.dynamic_dict['count']:
             self.data.dynamic_dict['count'][channel] = ""
-        d = re.split(r'\s+',self.data.dynamic_dict['count'][channel])
+        d = []
+        for v in re.split(r'\s+',self.data.dynamic_dict['count'][channel]):
+            if v == "":
+                continue
+            if not re.match(r'^[0-9]+$',v) is None:
+                d.append(v)
         if len(d) > 30:
             d.pop(0)
         d.append(str(count))
