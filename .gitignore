@@ -9,4 +9,6 @@ data/dynamic/*.sqlite3-shm
 data/dynamic/*.sqlite3-wal
 data/dynamic/dict/*.opp
 
+deleteme/
+
 

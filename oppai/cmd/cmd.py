@@ -137,6 +137,9 @@ class Cmd:
     def ping(self,channel):
         return 'oppai pong!'
     
+    def tawawa(self,channel):
+        return random.choice(self.data.list['tawawa'])
+
     def help(self,channel):
         max_length_command = max([len(x) for x in self.data.dict_keys(self.data.dict['help'])])
         help_text = '```\n'
@@ -147,7 +150,7 @@ class Cmd:
         return help_text
     
     def version(self,channel):
-        return "oppai_bot version 0.0.20211029"
+        return "oppai_bot version 0.0.20211106.0"
         
 
 
